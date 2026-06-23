@@ -38,12 +38,12 @@ package main
 
 import (
 "fmt"
-"github.com/your-repo/inhache/hash64"
+"intHache"
 )
 
 func main() {
 // Initialize Mode 1 infrastructure with a 150k item limit per shard
-pipeline := hash64.NewPipeline(150_000)
+pipeline := intHache.NewPipeline(150_000)
 defer pipeline.Clear() // Explicit memory deallocation
 
 	// Rent a reusable byte buffer from the internal pool to eliminate allocations
@@ -55,7 +55,7 @@ defer pipeline.Clear() // Explicit memory deallocation
 	buf = append(buf, []byte("99281")...)
 
 	// Step 1: Calculate hash via Stateless core
-	hash := hash64.Sum(buf)
+	hash := intHache.Sum(buf)
 
 	// Step 2: Validate uniqueness against the stateful sharded engine
 	isUnique := pipeline.CheckAndInsert(hash)
@@ -79,15 +79,15 @@ package main
 
 import (
 "fmt"
-"github.com/your-repo/inhache/hash64"
+"intHache"
 )
 
 func main() {
 payload := "any_raw_text_or_json_payload"
 
 	// Pure stack-allocated execution from string or bytes
-	hash1 := hash64.SumString(payload)
-	hash2 := hash64.Sum([]byte(payload))
+	hash1 := intHache.SumString(payload)
+	hash2 := intHache.Sum([]byte(payload))
 
 	fmt.Printf("String Hash: %d | Byte Hash: %d\n", hash1, hash2)
 }
@@ -148,12 +148,12 @@ package main
 
 import (
 "fmt"
-"github.com/your-repo/inhache/hash64"
+"intHache"
 )
 
 func main() {
 // Инициализируем инфраструктуру Режима 1 с лимитом 150к записей на шард
-pipeline := hash64.NewPipeline(150_000)
+pipeline := intHache.NewPipeline(150_000)
 defer pipeline.Clear() // Явное освобождение памяти при завершении
 
 	// Арендуем буфер из пула, чтобы избежать аллокаций в куче
@@ -165,7 +165,7 @@ defer pipeline.Clear() // Явное освобождение памяти пр�
 	buf = append(buf, []byte("99281")...)
 
 	// Шаг 1: Рассчитываем быстрый хэш через Stateless ядро
-	hash := hash64.Sum(buf)
+	hash := intHache.Sum(buf)
 
 	// Шаг 2: Проверяем уникальность в секционированном хранилище
 	isUnique := pipeline.CheckAndInsert(hash)
@@ -189,15 +189,15 @@ package main
 
 import (
 "fmt"
-"github.com/your-repo/inhache/hash64"
+"intHache"
 )
 
 func main() {
 payload := "любой_текст_или_json_для_расчета"
 
 	// Чистый вызов на стеке для строк или байт
-	hash1 := hash64.SumString(payload)
-	hash2 := hash64.Sum([]byte(payload))
+	hash1 := intHache.SumString(payload)
+	hash2 := intHache.Sum([]byte(payload))
 
 	fmt.Printf("Строковый хэш: %d | Байтовый хэш: %d\n", hash1, hash2)
 }
