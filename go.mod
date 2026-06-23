@@ -1,3 +1,3 @@
-module inHache
+module intHache
 
 go 1.25.0
