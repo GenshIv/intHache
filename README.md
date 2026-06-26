@@ -6,7 +6,7 @@ Choose your language / Выберите язык:
 
 ---
 
-## 🇬🇧
+## 🇬🇧 English Documentation
 
 ### Ultra-Fast 64-bit Hashing Engine for High-Load Systems
 
@@ -116,7 +116,7 @@ BenchmarkMode1_Pipeline100M-32           1   2079343200 ns/op   2421428000 B/op 
 
 ---
 
-## 🇷🇺
+## 🇷🇺 Документация на русском языке
 
 ### Сверхбыстрый 64-битный хэш-движок для High-Load систем
 
